@@ -73,7 +73,7 @@ class DB:
                     logging.exception('テーブルへのインポートに失敗しました')
                     self.err_df = pd.concat([self.err_df, pd.DataFrame([row])])
             self.cnxn.commit()
-            if len(Test.err_df) != 0:
+            if len(self.err_df) != 0:
                 logging.info('テーブルにインポートできていないデータがあります')
 
     #SQLテーブル読み込み
