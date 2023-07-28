@@ -2,17 +2,17 @@
 import os
 import logging
 import logging.handlers
-import function
+from as_lib import func
 
 def log_setting(outpath='Default', n=30, unit='D'):
     #ログファイル出力ディレクトリに移動
     if outpath == 'Default':
-        outpath = os.path.dirname(function.getpath())
+        outpath = os.path.dirname(func.getpath())
     if os.path.isdir(outpath) == False:
         os.mkdir(outpath)
     os.chdir(outpath)
     
-    filename = os.path.basename(os.path.splitext(function.getpath())[0])+'.log'
+    filename = os.path.basename(os.path.splitext(func.getpath())[0])+'.log'
     
     #ログ出力設定
     formatter = '[%(asctime)s] %(levelname)s : %(message)s'
@@ -31,3 +31,7 @@ def log_setting(outpath='Default', n=30, unit='D'):
     file_handler.setFormatter(logging.Formatter(formatter))
     
     logging.basicConfig(level=logging.INFO, handlers=[stream_handler, file_handler])
+
+if __name__ == '__main__':
+    print(func.getpath())
+    log_setting()
