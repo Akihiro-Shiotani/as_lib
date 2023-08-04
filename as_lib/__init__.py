@@ -2,7 +2,7 @@
 try:
     import numpy
 except ImportError:
-    print('AS_SQL bindings requires "numpy" package.')
+    print('as_lib bindings requires "numpy" package.')
     print('Install it via command:')
     print('    pip install numpy')
     raise
@@ -10,7 +10,7 @@ except ImportError:
 try:
     import pyodbc
 except ImportError:
-    print('AS_SQL bindings requires "pyodbc" package.')
+    print('as_lib bindings requires "pyodbc" package.')
     print('Install it via command:')
     print('    pip install pyodbc')
     raise
@@ -18,7 +18,7 @@ except ImportError:
 try:
     import pandas
 except ImportError:
-    print('AS_SQL bindings requires "pandas" package.')
+    print('as_lib bindings requires "pandas" package.')
     print('Install it via command:')
     print('    pip install pandas')
     raise
@@ -26,25 +26,33 @@ except ImportError:
 try:
     import logging
 except ImportError:
-    print('AS_SQL bindings requires "logging" package.')
+    print('as_lib bindings requires "logging" package.')
     print('Install it via command:')
     print('    pip install logging')
     raise
 
 try:
-    import sklearn
+    import matplotlib
 except ImportError:
-    print('AS_SQL bindings requires "scikit-learn" package.')
+    print('as_lib bindings requires "matplotlib" package.')
     print('Install it via command:')
-    print('    pip install scikit-learn')
+    print('    pip install matplotlib')
     raise
 
 try:
-    import matplotlib
+    import cv2
 except ImportError:
-    print('AS_SQL bindings requires "matplotlib" package.')
+    print('as_lib bindings requires "matplotlib" package.')
     print('Install it via command:')
-    print('    pip install matplotlib')
+    print('    pip install opencv-python')
+    raise
+
+try:
+    import PIL
+except ImportError:
+    print('as_lib bindings requires "matplotlib" package.')
+    print('Install it via command:')
+    print('    pip install pillow')
     raise
 
 import os, glob

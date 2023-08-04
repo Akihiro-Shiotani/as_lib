@@ -2,36 +2,38 @@
 import os
 import logging
 import logging.handlers
-from as_lib import func
+from as_lib import util
 
-def log_setting(outpath='Default', n=30, unit='D'):
-    #ログファイル出力ディレクトリに移動
+def test():
+    config(level=logging.INFO)
+    logging.debug('テスト')
+
+def config(outpath='Default', level=logging.INFO, n=30, unit='D'):
+    #出力ディレクトリの設定
     if outpath == 'Default':
-        outpath = os.path.dirname(func.getpath())
-    if os.path.isdir(outpath) == False:
-        os.mkdir(outpath)
-    os.chdir(outpath)
+        outpath = os.path.dirname(util.getpath())
+    util.mkdir(outpath)
     
-    filename = os.path.basename(os.path.splitext(func.getpath())[0])+'.log'
+    #ログファイル名の設定
+    logname = os.path.basename(os.path.splitext(util.getpath())[0])+'.log'
     
     #ログ出力設定
     formatter = '[%(asctime)s] %(levelname)s : %(message)s'
     #コンソール表示設定
     stream_handler = logging.StreamHandler()
     # ログレベルの設定
-    stream_handler.setLevel(logging.INFO)
+    stream_handler.setLevel(level)
     # ログ出力フォーマットを設定
     stream_handler.setFormatter(logging.Formatter(formatter))
-
     #ファイル出力設定
-    file_handler = logging.handlers.TimedRotatingFileHandler(filename, when=unit, interval=n, backupCount=5)
+    file_handler = logging.handlers.TimedRotatingFileHandler(logname, when=unit, interval=n, backupCount=5)
     # ログレベルの設定
-    file_handler.setLevel(logging.INFO)
+    file_handler.setLevel(level)
     # ログ出力フォーマットを設定
     file_handler.setFormatter(logging.Formatter(formatter))
     
-    logging.basicConfig(level=logging.INFO, handlers=[stream_handler, file_handler])
+    #ログ出力設定
+    logging.basicConfig(level=level, handlers=[stream_handler, file_handler], force=True)
 
 if __name__ == '__main__':
-    print(func.getpath())
-    log_setting()
+    test()
